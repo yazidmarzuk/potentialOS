@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import rospy
 from std_msgs.msg import Float32
 from threading import Thread, Event
 import signal, sys
+from pythonScripts.systemStats import json_data 
 
 import random
 
@@ -56,8 +57,15 @@ def terminal():
 def robotVitals():
     return render_template("robot_vitals.html")
 
-
-
+# on the terminal type: curl http://127.0.0.1:5000/ 
+@app.route('/api-call', methods = ['GET', 'POST']) 
+def home(): 
+    if(request.method == 'GET'): 
+          return json_data 
+  
+@app.route('/home/<int:num>', methods = ['GET']) 
+def disp(num):   
+    return jsonify({'data': num**2}) 
 
 @app.route('/system-info')
 def systemInfo():

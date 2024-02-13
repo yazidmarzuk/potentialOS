@@ -1,6 +1,6 @@
 import subprocess
 import json
-import constants
+# import constants
 
 # Getting system information
 Architecture = subprocess.check_output(["uname", "-m"]).decode().strip()
@@ -19,7 +19,7 @@ except subprocess.CalledProcessError:
     ssid = "Unknown"
 
 # Getting operating voltage (Assuming Jetson Xavier)
-voltage = subprocess.check_output(["sudo", "nvpmodel", "-q"]).decode().strip().split('\n')[0]
+# voltage = subprocess.check_output(["sudo", "nvpmodel", "-q"]).decode().strip().split('\n')[0]
 
 # Getting disk usage (used and free)
 try:
@@ -66,7 +66,7 @@ info_dict = {
         "SSID": ssid
     },
     "Voltage Information": {
-        "Operating Voltage": voltage
+        # "Operating Voltage": voltage
     },
     "Disk Usage": {
         "nvme0n1p1": disk_info
