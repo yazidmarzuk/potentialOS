@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Potential OS</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon_package_v0.16/favicon-32x32.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='assets/css/style.css') }}">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="/">
+          <i class="bi bi-grid"></i>
+          <span>Potential ROV</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="">
+          <i class="bi bi-person"></i>
+          <span>PotPit</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/thruster-ui">
+          <i class="bi bi-person"></i>
+          <span>Thruster Data</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="sonarviewer">
+          <i class="bi bi-journal-text"></i>
+          <span>Sonar Viewer</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="extensions">
+          <i class="bi bi-menu-button-wide"></i><span>Extensions</span></i>
+        </a>
+
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="terminal">
+          <i class="bi bi-journal-text"></i>
+          <span>Terminal</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="robot_vitals">
+          <i class="bi bi-journal-text"></i>
+          <span>Robot Stats</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Vehicle Configuration</span></i>
+        </a>
+ 
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" href="system-info">
+          <i class="bi bi-bar-chart"></i><span>System Info</span></i>
+        </a>
+  
+      </li><!-- End Charts Nav -->
+
+
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle" style="padding-top: 2%;">
+      <h1></h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+
+ 
+
+                <div class="card-body">
+                  <h5 class="card-title">Power Supply Surface</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-power"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 id="voltageCurrent">600 V | 7.4A</h6>
+                      <span class="text-success small pt-1 fw-bold" id="power">4440 Watts</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+            <!-- Revenue Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+
+ 
+
+                <div class="card-body">
+                  <h5 class="card-title"> Power Supply ROV Unit <span> </span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class=" ri-flashlight-line"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 id="voltageCurrent2">24.3 V | 150A</h6>
+                      <span class="text-success small pt-1 fw-bold" id="power2">3645 Watts</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+ 
+
+                <div class="card-body">
+                  <h5 class="card-title">Speed of ROV <span> </span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-speedometer"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 id="speed">0 m/s</h6>
+                      <!-- <span class="text-danger small pt-1 fw-bold">12%</span> <span
+                        class="text-muted small pt-2 ps-1">decrease</span> -->
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+                <div class="card-body info-card">
+                  <h5 class="card-title">Depth <span> | Graph</span></h5>
+
+                  <!-- Line Chart -->
+                  <div id="reportsChart"></div>
+
+                  <script>
+                    var dataPoints = [];
+                    var maxDataPoints = 10;  // Maximum number of data points to keep
+                    var dataPointInterval = 500;  // Time interval for updating the chart in milliseconds
+                    var maxDepth = 500;
+                    var depthFluctuation = 20;  // Adjust the range of depth fluctuations
+                    var depthIncreaseRate = 0.1;  // Adjust the rate of depth increase
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                      var chart = new ApexCharts(document.querySelector("#reportsChart"), {
+                        series: [{
+                          name: 'ROV Depth',
+                          data: dataPoints,
+                        }],
+                        chart: {
+                          height: 350,
+                          type: 'area',
+                          toolbar: {
+                            show: false
+                          },
+                          animations: {
+                            enabled: false // Disable animations for smoother scrolling
+                          },
+                        },
+                        markers: {
+                          size: 4
+                        },
+                        colors: ['#47A785'],
+                        fill: {
+                          type: "gradient",
+                          gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.3,
+                            opacityTo: 0.4,
+                            stops: [0, 90, 100]
+                          }
+                        },
+                        dataLabels: {
+                          enabled: false
+                        },
+                        stroke: {
+                          curve: 'smooth',
+                          width: 2
+                        },
+                        xaxis: {
+                          
+                          type: 'datetime',
+                          
+                          labels: {
+                            formatter: function (value, timestamp) {
+                              var date = new Date(value);
+                              var istOptions = {
+                                timeZone: 'Asia/Kolkata',
+                                year: 'numeric',
+                                month: 'numeric',
+                                day: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                second: 'numeric',
+                                hour12: false
+                              };
+                              return new Intl.DateTimeFormat('en-US', istOptions).format(date);
+                            }
+                          }
+                        },
+                        yaxis: {
+                          color: "#ffffff" ,
+                          reversed: true,  // Invert the y-axis
+                          max: maxDepth,   // Set max depth explicitly
+                          labels: {
+                            formatter: function (value) {
+                              return value.toFixed(2);
+                            }
+                          }
+                        },
+                        tooltip: {
+                          x: {
+                            format: 'HH:mm'
+                          },
+                        },
+                        scrollbar: {
+                          enabled: false,
+                        },
+                      });
+
+                      chart.render();
+
+                      // Function to generate gradually increasing and fluctuating ROV depth pattern
+                      function generateDepthPattern() {
+                        var currentTime = new Date().getTime();
+                        var previousDataPoint = dataPoints.length > 0 ? dataPoints[dataPoints.length - 1][1] : 0;
+                        var depthFluctuationValue = Math.random() * depthFluctuation - depthFluctuation / 2;
+                        var depthIncrease = depthIncreaseRate * (maxDepth - previousDataPoint);
+                        var depth = Math.max(0, Math.min(maxDepth, previousDataPoint + depthIncrease + depthFluctuationValue));
+                        return [currentTime, depth];
+                      }
+
+                      // Function to update the chart data
+                      function updateChart() {
+                        var newDataPoint = generateDepthPattern();
+                        dataPoints.push(newDataPoint);
+
+                        // Keep the number of data points within the maximum limit
+                        if (dataPoints.length > maxDataPoints) {
+                          dataPoints.shift();  // Remove the oldest data point
+                        }
+
+                        chart.updateSeries([{ data: dataPoints }]);
+                      }
+
+                      // Set up an interval to update the chart periodically
+                      setInterval(function () {
+                        updateChart();
+                      }, dataPointInterval);
+                    });
+                  </script>
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
+
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+ 
+
+                <div class="card-body" style="background-color: #262C36;">
+
+                  <table class="table table-borderless" >
+                    
+                    <thead>
+                      <tr>
+                        <th scope="col" style="background-color: #262C36; color: white;">Ping Sensors</th>
+                        <th scope="col" style="background-color: #262C36; color: white;">Video</th>
+                        <th scope="col" style="background-color: #262C36; color: white;">Lights</th>
+                        <th scope="col" style="background-color: #262C36; color: white;">Gripper</th>
+                        <th scope="col" style="background-color: #262C36; color: white;">Battery Monitor</th>
+                        <th scope="col" style="background-color: #262C36; color: white;">Leak</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="background-color: #262C36; color: white;"><span class="badge bg-success">Active</span></td>
+                        <td style="background-color: #262C36; color: white;"><span class="badge bg-success">Active</span></td>
+                        <td style="background-color: #262C36; color: white;"><span class="badge bg-success">Active</span></td>
+                        <td style="background-color: #262C36; color: white;"><span class="badge bg-secondary">Not Configured</span></td>
+                        <td style="background-color: #262C36; color: white;"><span class="badge bg-success">Active</span></td>
+                        <td style="background-color: #262C36; color: white;"><span class="badge bg-success">Active</span></td>
+
+                      </tr>
+                      <tr>
+                        <td style="background-color: #262C36; color: white;">No Data</td>
+                        <td style="background-color: #262C36; color: white;">No Data</td>
+                        <td style="background-color: #262C36; color: white;">Not Turned ON</td>
+                        <td style="background-color: #262C36; color: white;">-</td>
+                        <td style="background-color: #262C36; color: white;">Voltage: NaN V <br>
+                          Current: NaN A <br>
+                          Voltage Pin: Unknown <br>
+                          Voltage Multiplier: Unknown <br>
+                          Current Pin: Unknown <br>
+                          Current per Volt: Unknown <br>
+                          Current Offset: Unknown <br>
+                          Low Voltage Failsafe: Unknown <br>
+                          Critical Voltage Failsafe: Unknown
+                        </td>
+                        <td style="background-color: #262C36; color: white;">No Leaks Detected</td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          <!-- Recent Activity -->
+          <div class="card">
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="card-body" style="padding: 0%;">
+              <div style="padding-top:70%; position:relative; display:block; height: 100%; width: 100%; overflow: hidden; background-color: transparent;">
+                <iframe width="100%" height="100%" 
+                  src="https://sketchfab.com/models/9d3b14fe28834cf08cc9d0b343cc9aa0/embed?autospin=1&autostart=1"
+                  frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
+                </iframe>
+              </div>               
+
+            </div>
+          </div><!-- End Recent Activity -->
+
+          <!-- Budget Report -->
+          <div class="card">
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="card-body pb-0" style="padding-top: 25px; background-color: #262C36;" >
+
+              <div class="card" >
+                <div class="card-body" style="background-color: #262C36">
+                  <h5 class="card-title">System Stats</h5>
+    
+                  <!-- Default Tabs -->
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="background-color: #262C36; color: white;">General</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="background-color: #262C36; color: white;" >Thruster</button>
+                    </li>
+ 
+                  </ul>
+                  <div class="tab-content pt-2" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <!-- Dark Table -->
+                      <table class="table table-light" style="color: rgb(229, 250, 188);">
+                        <thead>
+                        </thead>
+                        <tbody">
+                          <tr>
+                            <td style="background-color: #262C36; color: white;"><i class="bi bi-wifi"></i> Connectivity</td>
+                            <td style="background-color: #262C36; color: white;"></td>
+                            <td style="background-color: #262C36; color: white;">Potential WiFi</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #262C36; color: white;"><i class="bi bi-thermometer-half"></i>    System Temp</td>
+                            <td style="background-color: #262C36; color: white;"></td>
+                            <td style="background-color: #262C36; color: white;">35 deg</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #262C36; color: white;"><i class="bi bi-camera-video"></i>    Live Feed</td>
+                            <td style="background-color: #262C36; color: white;"></td>
+                            <td style="background-color: #262C36; color: white;">Enabled</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #262C36; color: white;"><i class="bi bi-x-circle"></i>    Errors</td>
+                            <td style="background-color: #262C36; color: white;"></td>
+                            <td style="background-color: #262C36; color: white;">None</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #262C36; color: white;"><i class=" ri-arrow-down-line"></i>    Pressure</td>
+                            <td style="background-color: #262C36; color: white;"></td>
+                            <td style="background-color: #262C36; color: white;">30 Bars</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- End Dark Table -->
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <table class="table table-light">
+                        <thead>
+                        </thead>
+                        <tbody >
+                          <tr>
+                            <th scope="col" style="background-color: #262C36; color: white;"> Thruster #</th>
+                            <th scope="col" style="background-color: #262C36; color: white;">Current</th>
+                            <th scope="col" style="background-color: #262C36; color: white;">Voltage</th>
+                            <th scope="col" style="background-color: #262C36; color: white;">RPM</th>
+                          </tr>
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">1</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">2</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">3</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">4</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">5</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>       
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">6</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>       
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">7</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>       
+                          <tr>
+                            <th style="background-color: #262C36; color: white;" scope="row">8</th>
+                            <td style="background-color: #262C36; color: white;">15A</td>
+                            <td style="background-color: #262C36; color: white;">23.5</td>
+                            <td style="background-color: #262C36; color: white;">2700</td>
+                          </tr>                        
+                        </tbody>
+                      </table>
+                            </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    </div>
+                  </div><!-- End Default Tabs -->
+    
+                </div>
+              </div>
+
+
+            </div>
+          </div><!-- End Budget Report -->
+
+          </div><!-- End News & Updates -->
+
+        </div><!-- End Right side columns -->
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+ 
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/chart.js/chart.umd.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/echarts/echarts.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/quill/quill.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/tinymce/tinymce.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js')}}"></script>
+
+
+
+  <!-- Template Main JS File -->
+  <script src="{{ url_for('static', filename='assets/js/main.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/js/custom.js')}}"></script>
+
+
+</body>
+
+</html>

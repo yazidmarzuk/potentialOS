@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon_package_v0.16/favicon-32x32.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='assets/css/style.css') }}">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/">
+          <i class="bi bi-grid"></i>
+          <span>Potential ROV</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="">
+          <i class="bi bi-person"></i>
+          <span>PotPit</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="thruster-ui">
+          <i class="bi bi-person"></i>
+          <span>Thruster Data</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="sonarviewer">
+          <i class="bi bi-journal-text"></i>
+          <span>Sonar Viewer</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="extensions">
+          <i class="bi bi-menu-button-wide"></i><span>Extensions</span></i>
+        </a>
+
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="terminal">
+          <i class="bi bi-journal-text"></i>
+          <span>Terminal</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="robot_vitals">
+          <i class="bi bi-journal-text"></i>
+          <span>Robot Stats</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Vehicle Configuration</span></i>
+        </a>
+ 
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#charts-nav" href="system-info">
+          <i class="bi bi-bar-chart"></i><span>System Info</span></i>
+        </a>
+  
+      </li><!-- End Charts Nav -->
+
+
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle" style="padding-top: 2%;">
+      <h1></h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">System Info</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">SYSTEM INFO </h5>
+
+          <!-- Bordered Tabs -->
+          <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-home" type="button" role="tab" aria-controls="home" aria-selected="true">System Stats</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Processes</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Network</button>
+            </li>
+          </ul>
+          <div class="tab-content pt-2" id="borderedTabContent">
+            <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
+                <section class="section contact">
+
+                    <div class="row" style="padding: 5%;">
+          
+          
+                        <div class="row">
+                            <div class="col-lg-3" style="padding: 3%;">
+                            <div class="info-box card">
+                                <h2>
+                                    <i class="bi bi-cpu" method="GET"></i>
+                                    {{data}} %
+                                </h2>
+                                 
+                                <h3>CPU ARMv7 Processor rev 3</h3>                                </h3>
+                                <p> cpu0: 8% (1800MHz) <br> 
+                                    cpu1: 8% (1800MHz) <br>
+                                    cpu2: 9% (1800MHz) <br>
+                                    cpu3: 8% (1800MHz) <br>
+                                    </p>
+                            </div>
+                            
+                            </div>
+                            <div class="col-lg-3" style="padding: 3%;">
+                            <div class="info-box card">
+                                <h2>
+                                    <i class="bi bi-memory"></i>
+                                    13.9%
+                                </h2>    
+                            
+                                <h3>Memory</h3>
+                                <p>RAM: 544.5 MB/3.8 GB <br>
+                                    SWAP: 0.0 kB/102.4 MB
+                                    </p>
+                            </div>
+                            </div>
+                            <div class="col-lg-3" style="padding: 3%;">
+                            <div class="info-box card">
+                                <h2>
+                                <i class="bi bi-sd-card"></i>
+                                31.2%
+                                </h2>                            
+                                <h3>Disk</h3>
+                                <p>9.050GB/29GB (overlay)
+                                    <br></p>
+                            
+                                </div>
+                            </div>
+                            <div class="col-lg-3"style="padding: 3%;">
+                            <div class="info-box card">
+                                <h2>
+                                <i class="bi bi-thermometer-half"></i>
+                                46.3ºC
+                                </h2>
+                                <h3>Temperature</h3>
+                                <p>CPU 46.3ºC<br>Max: 46.3ºC <br>Crit: 0.0ºC</p>
+                            </div>
+                            </div>
+                            <p>
+                            For Detailed Stats with graphs visit <a href="https://amplify.nginx.com/dashboard/49878" target="_blank">here</a>
+                        </p>
+                        </div>
+          
+                        </div>
+                        
+                    </section>            </div>
+            <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
+              Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+            </div>
+            <div class="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="contact-tab">
+          <!-- Special title treatmen -->
+          <div class="card text-center">
+            <div class="card-header">
+              <ul class="nav nav-pills card-header-pills">
+
+              </ul>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Network Speed Test</h5>
+              <p class="card-text"></p>
+                  <button onclick="runPythonScript()" type="button" class="btn btn-primary">Run Test</button>
+
+              </button>
+            </div>
+          </div><!-- End Special title treatmen -->
+
+            </div>
+          </div><!-- End Bordered Tabs -->
+
+
+
+
+
+  </main><!-- End #main -->
+
+ 
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/chart.js/chart.umd.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/echarts/echarts.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/quill/quill.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/tinymce/tinymce.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js')}}"></script>
+
+
+
+  <!-- Template Main JS File -->
+  <script src="{{ url_for('static', filename='assets/js/main.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/js/custom.js')}}"></script>
+
+  <!-- ROS LIBRARY BRIDGE JS -->
+  <!-- Running Fully on Local Files -->
+  <script src="{{ url_for('static', filename='assets/js/ros.js')}}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/eventemitter2.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/roslib.min.js') }}"></script>    
+
+
+</body>
+
+</html>

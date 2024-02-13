@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROS Data Display</title>
+</head>
+<body>
+    <h1>Data from ROS Topic:</h1>
+    <p id="data">Waiting for data...</p>
+
+    <!-- Include ROSlib.js -->
+    <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/eventemitter2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/roslib.min.js')}}"></script>    
+    <script type="text/javascript">
+        // Create a ROSLIB.Ros object
+        var ros = new ROSLIB.Ros();
+
+        // Define ROS bridge URL
+        var rosBridgeUrl = 'ws://localhost:9090';
+
+        // Connect to ROS
+        ros.connect(rosBridgeUrl);
+
+        // Define topic to subscribe to
+        var topicName = '/chatter';
+
+        // Create a ROSLIB.Topic object
+        var listener = new ROSLIB.Topic({
+            ros: ros,
+            name: topicName,
+            messageType: 'std_msgs/Float32'
+        });
+
+        // Define a callback function to handle received messages
+        listener.subscribe(function(message) {
+            // Update the HTML element with received data
+            document.getElementById('data').innerHTML = 'Received data: ' + message.data;
+        });
+    </script>
+</body>
+</html>
