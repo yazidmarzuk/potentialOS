@@ -1,8 +1,8 @@
-# Potential OS Flask Dashboard
+# 🚀 Potential OS Flask Dashboard
 
 Welcome to the Potential OS Flask Dashboard project! This project provides a dynamic dashboard for displaying ROV (Remotely Operated Vehicle) data and controlling the ROV remotely. The dashboard subscribes to a ROS topic (`/potential_os_data`) using rospy, a Python library for ROS, and updates the webpage in real-time with the received data. Additionally, it allows users to control the ROV through interactive elements on the dashboard.
 
-## Features
+## 🌟 Features
 
 - Real-time display of ROV data on a dynamic dashboard.
 - Control functionalities to remotely operate the ROV.
@@ -10,7 +10,7 @@ Welcome to the Potential OS Flask Dashboard project! This project provides a dyn
 - Easy setup and integration with existing ROS systems.
 - Lightweight and simple Flask web server.
 
-## Requirements
+## 📋 Requirements
 
 - ROS: Make sure you have ROS installed on your system.
 - Python: This project requires Python 2.7+ or Python 3.x.
@@ -18,7 +18,7 @@ Welcome to the Potential OS Flask Dashboard project! This project provides a dyn
 - rospy: Install rospy using `pip install rospy`.
 - Python Virtual Environment (optional but recommended)
 
-## Installation
+## 🛠️ Installation
 
 1. Clone the repository:
 
@@ -49,7 +49,7 @@ Welcome to the Potential OS Flask Dashboard project! This project provides a dyn
 
     Note: Make sure you have Node.js and npm installed on your system. You can download them from [here](https://nodejs.org/).
 
-## Usage
+## 🚀 Usage
 
 1. Start your ROS master node:
 
@@ -77,15 +77,15 @@ Welcome to the Potential OS Flask Dashboard project! This project provides a dyn
 
 5. Open your web browser and navigate to `http://localhost:5000` to access the dynamic dashboard for Potential OS data display and control.
 
-## File Structure
+## 📁 File Structure
 
 - `app.py`: Python Flask application that subscribes to the ROS topic and serves the dynamic dashboard.
 - `templates/index.html`: HTML template for the dynamic dashboard displaying ROV data and control functionalities.
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! If you find any bugs or want to suggest improvements, please open an issue or submit a pull request.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
