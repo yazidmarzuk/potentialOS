@@ -4,7 +4,7 @@ setInterval(fetchData, 2000);
 
 function fetchData() {
 
-    fetch('http://127.0.0.1:5000/api-call')
+    fetch('http://localhost:5000/api-call')
     .then(response => {
         // Check if the response is successful (status code 200)
         if (response.ok) {

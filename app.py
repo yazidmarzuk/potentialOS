@@ -3,7 +3,7 @@ import rospy
 from std_msgs.msg import Float32
 from threading import Thread, Event
 import signal, sys
-from pythonScripts.systemStats import json_data 
+from pythonScripts.systemStats import system_stats 
 
 import random
 
@@ -61,11 +61,9 @@ def robotVitals():
 @app.route('/api-call', methods = ['GET', 'POST']) 
 def home(): 
     if(request.method == 'GET'): 
-          return json_data 
+          return system_stats()
   
-@app.route('/home/<int:num>', methods = ['GET']) 
-def disp(num):   
-    return jsonify({'data': num**2}) 
+
 
 @app.route('/system-info')
 def systemInfo():
