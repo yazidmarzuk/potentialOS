@@ -152,53 +152,57 @@
                         <div class="row">
                             <div class="col-lg-3" style="padding: 3%;">
                             <div class="info-box card">
-                                <h2>
+                                <h2 id="CPU Information">
                                     <i class="bi bi-cpu" method="GET"></i>
-                                    {{data}} %
-                                </h2>
+                                    <span id="Total Percentage"></span> %
+                                  </h2>
                                  
                                 <h3>CPU ARMv7 Processor rev 3</h3>                                </h3>
-                                <p> cpu0: 8% (1800MHz) <br> 
-                                    cpu1: 8% (1800MHz) <br>
-                                    cpu2: 9% (1800MHz) <br>
-                                    cpu3: 8% (1800MHz) <br>
-                                    </p>
+                                <p>
+                                  <span id ></span>                                                                    
+                                </p>
                             </div>
                             
                             </div>
                             <div class="col-lg-3" style="padding: 3%;">
                             <div class="info-box card">
-                                <h2>
+                                <h2 id="Memory Information">
                                     <i class="bi bi-memory"></i>
-                                    13.9%
+                                    <span id="Percentage"></span> %
                                 </h2>    
                             
                                 <h3>Memory</h3>
-                                <p>RAM: 544.5 MB/3.8 GB <br>
-                                    SWAP: 0.0 kB/102.4 MB
-                                    </p>
+                                <p> RAM:       <span id="Used"></span> / <span id="Total"></span> <br>
+                                    Available: <span id="Available"></span> <br>
+                                    Free:      <span id="Free"></span> <br>
+                                </p>
                             </div>
                             </div>
                             <div class="col-lg-3" style="padding: 3%;">
-                            <div class="info-box card">
-                                <h2>
-                                <i class="bi bi-sd-card"></i>
-                                31.2%
-                                </h2>                            
-                                <h3>Disk</h3>
-                                <p>9.050GB/29GB (overlay)
-                                    <br></p>
-                            
-                                </div>
-                            </div>
+                              <div class="info-box card">
+                                  <h2 >
+                                      <i class="bi bi-sd-card"></i>
+                                      <span id="disk-main-data"></span> 
+                                  </h2>    
+                              
+                                  <h3>Disk Usage</h3>
+                                  <p> Used:       <span id="disk-used-data"></span> / <span id="disk-total-data"></span> <br>
+                                      Available: <span id="disk-avail-data"></span> <br>
+                                      Partition:      <span id="disk-partition-data"></span> <br>
+
+                                    </p>
+                              </div>
+                              </div>
                             <div class="col-lg-3"style="padding: 3%;">
                             <div class="info-box card">
-                                <h2>
+                                <h2 id="System Status">
                                 <i class="bi bi-thermometer-half"></i>
-                                46.3ºC
+                                <span id="Temperature">0</span>ºC
                                 </h2>
                                 <h3>Temperature</h3>
-                                <p>CPU 46.3ºC<br>Max: 46.3ºC <br>Crit: 0.0ºC</p>
+                                <p> Uptime        <span id="Uptime"></span><br>
+                                    Load Average: <span id="Load Average"></span> <br>
+                                </p>
                             </div>
                             </div>
                             <p>
@@ -223,7 +227,9 @@
             <div class="card-body">
               <h5 class="card-title">Network Speed Test</h5>
               <p class="card-text"></p>
-                  <button onclick="runPythonScript()" type="button" class="btn btn-primary">Run Test</button>
+                  <button id="fetchDataBtn">Fetch Data</button>
+
+                  <!-- <button onclick="runPythonScript()" type="button" class="btn btn-primary">Run Test</button> -->
 
               </button>
             </div>
@@ -264,6 +270,9 @@
   <script src="{{ url_for('static', filename='assets/js/ros.js')}}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/eventemitter2.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/roslib.min.js') }}"></script>    
+
+  <!-- Api Call for system stats -->
+  <script src="{{ url_for('static', filename='assets/js/system-stats.js')}}"></script>
 
 
 </body>

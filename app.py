@@ -69,7 +69,7 @@ def disp(num):
 
 @app.route('/system-info')
 def systemInfo():
-    return render_template("system-info.html",data=get_msg())
+    return render_template("system-info.html")
 
 def signal_handler(signal, msg):
     rospy.signal_shutdown("end")

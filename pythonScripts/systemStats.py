@@ -1,6 +1,6 @@
 import subprocess
 import json
-# import constants
+import psutil
 
 # Getting system information
 Architecture = subprocess.check_output(["uname", "-m"]).decode().strip()
@@ -18,8 +18,16 @@ except subprocess.CalledProcessError:
     network_interface = "Unknown"
     ssid = "Unknown"
 
-# Getting operating voltage (Assuming Jetson Xavier)
-# voltage = subprocess.check_output(["sudo", "nvpmodel", "-q"]).decode().strip().split('\n')[0]
+# Getting memory usage
+memory = psutil.virtual_memory()
+memory_info = {
+    "Total": memory.total,
+    "Available": memory.available,
+    "Used": memory.used,
+    "Free": memory.free,
+    "Percentage": memory.percent
+}
+
 
 # Getting disk usage (used and free)
 try:
@@ -29,26 +37,37 @@ try:
     for line in disk_usage_info:
         parts = line.split()
         if len(parts) >= 6 and parts[5] == '/':
-            disk_info["Used"] = parts[2]
-            disk_info["Available"] = parts[3]
-            disk_info["Total"] = parts[1]
+            disk_used = parts[2]
+            disk_available = parts[3]
+            disk_total = parts[1]
+            disk_percentage = parts[4]
+
+
+
 except subprocess.CalledProcessError:
     disk_info = {"Error": "Unable to fetch disk usage information"}
+
 
 # Getting uptime, load average, and number of tasks running
 uptime = subprocess.check_output(["uptime", "-p"]).decode().strip()
 load_average = subprocess.check_output(["uptime"]).decode().strip().split()[-3:]
+load_average_cleaned = [value.rstrip(",") for value in load_average]
 
-# Getting system temperature
-def get_system_temperature():
+
+
+# Getting CPU information
+cpu_info = {
+    "Cores": psutil.cpu_count(logical=True),
+    "Total Percentage": psutil.cpu_percent(),
+    "Per Core Percentage": psutil.cpu_percent(percpu=True)
+}
+
+# Getting CPU temperature
+def get_cpu_temperature():
     try:
-        # Read the temperature from the thermal zone file
-        with open("/sys/devices/virtual/thermal/thermal_zone0/temp", "r") as f:
+        with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
             temperature_str = f.read().strip()
-
-        # Convert the temperature from millidegrees Celsius to degrees Celsius
         temperature_celsius = int(temperature_str) / 1000
-
         return temperature_celsius
     except Exception as e:
         return f"Error: {e}"
@@ -65,17 +84,23 @@ info_dict = {
         "Connected Network Interface": network_interface,
         "SSID": ssid
     },
-    "Voltage Information": {
-        # "Operating Voltage": voltage
-    },
+    #  "Voltage Information": {
+    #     # "Operating Voltage": voltage
+    # },
     "Disk Usage": {
-        "nvme0n1p1": disk_info
-    },
+        "Used": disk_used,
+        "Available": disk_available,
+        "Total": disk_total,
+        "Percentage": disk_percentage,
+
+},
     "System Status": {
         "Uptime": uptime,
-        "Load Average": load_average,
-        "Temperature": get_system_temperature()  # Adding temperature information
-    }
+        "Load Average": load_average_cleaned,
+        "Temperature": get_cpu_temperature()  # Adding temperature information
+    },
+    "Memory Information": memory_info,
+    "CPU Information": cpu_info,
 }
 
 # Convert the dictionary to a JSON string
