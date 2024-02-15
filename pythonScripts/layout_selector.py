@@ -10,5 +10,4 @@ def selector():
         "VehicleConfig" : "nav-link collapsed",
         "SystemInfo"    : "nav-link collapsed"
     }
-    print(PotentialOS_Nav)
     return PotentialOS_Nav
