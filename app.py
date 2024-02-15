@@ -108,6 +108,6 @@ if __name__=="__main__":
     #liveServer Functionality
     # rospy.init_node("web-ros-test")
     # rospy.Subscriber("/chatter", Float32, updateValues) 
-    app.run(debug=True) 
+    app.run(host="0.0.0.0", debug=True) 
     # app.run(host='0.0.0.0',port=4444,debug=True) 
 
