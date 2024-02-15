@@ -1,117 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
+{% block mainbody %}
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title></title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon_package_v0.16/favicon-32x32.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='assets/css/style.css') }}">
-
-
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-
-
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/">
-          <i class="bi bi-grid"></i>
-          <span>Potential ROV</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
-          <i class="bi bi-person"></i>
-          <span>PotPit</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="thruster-ui">
-          <i class="bi bi-person"></i>
-          <span>Thruster Data</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="sonarviewer">
-          <i class="bi bi-journal-text"></i>
-          <span>Sonar Viewer</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="extensions">
-          <i class="bi bi-menu-button-wide"></i><span>Extensions</span></i>
-        </a>
-
-      </li><!-- End Components Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="terminal">
-          <i class="bi bi-journal-text"></i>
-          <span>Terminal</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="robot_vitals">
-          <i class="bi bi-journal-text"></i>
-          <span>Robot Stats</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Vehicle Configuration</span></i>
-        </a>
- 
-      </li><!-- End Tables Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link " data-bs-target="#charts-nav" href="system-info">
-          <i class="bi bi-bar-chart"></i><span>System Info</span></i>
-        </a>
-  
-      </li><!-- End Charts Nav -->
-
-
-
-  </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -214,8 +103,26 @@
                         
                     </section>            </div>
             <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
-              Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
-            </div>
+              <section class="section">
+                <div class="col-lg-12" >
+        
+                  <div class="card" style="background-color: transparent; border-radius: 10px;">
+                    <div class="card-body" style="padding:1%; overflow: hidden; border-radius: 10px;">
+                      <div style="border-radius: 20px; padding-top:57%; position:relative; display:flexbox;  overflow: hidden;">
+                        <iframe width="100%" height="100%"
+                          src="http://127.0.0.1:5000/process-ui"
+                          frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
+                        </iframe>
+                      </div>
+                      
+                    </div>
+                  </div>
+        
+        
+        
+              </div>
+            </section>           
+         </div>
             <div class="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="contact-tab">
           <!-- Special title treatmen -->
           <div class="card text-center">
@@ -249,32 +156,5 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="{{ url_for('static', filename='assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/vendor/chart.js/chart.umd.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/vendor/echarts/echarts.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/vendor/quill/quill.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/vendor/tinymce/tinymce.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js')}}"></script>
 
-
-
-  <!-- Template Main JS File -->
-  <script src="{{ url_for('static', filename='assets/js/main.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/js/custom.js')}}"></script>
-
-  <!-- ROS LIBRARY BRIDGE JS -->
-  <!-- Running Fully on Local Files -->
-  <script src="{{ url_for('static', filename='assets/js/ros.js')}}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/eventemitter2.min.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='assets/vendor/ros_cdn/roslib.min.js') }}"></script>    
-
-  <!-- Api Call for system stats -->
-  <script src="{{ url_for('static', filename='assets/js/system-stats.js')}}"></script>
-
-
-</body>
-
-</html>
+{% endblock mainbody %}

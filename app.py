@@ -3,10 +3,15 @@ import rospy
 from std_msgs.msg import Float32
 from threading import Thread, Event
 import signal, sys
-from pythonScripts.systemStats import system_stats 
+from pythonScripts.systemStats import system_stats
+from pythonScripts.processes import get_processes 
+from pythonScripts.layout_selector import selector 
+
+import psutil
+import json
+from datetime import datetime
 
 import random
-
 
 msg = 0.0
 event = Event()
@@ -23,51 +28,72 @@ rospy.Subscriber("/chatter",Float32, callback)
 app=Flask(__name__)
 
 def get_msg():
-
     while True:
         global msg
         return msg.data
 
-
-
 @app.route('/')
 def index():
-    return render_template("index.html")
+    highlight = selector()
+    highlight["Index"] = "nav-link"
+    return render_template("index.html", PotentialOS_Nav=highlight )
 
 @app.route('/extensions')
 def extensions():
-    return render_template("extensions.html")
+    highlight = selector()
+    highlight["Extensions"] = "nav-link"
+
+    return render_template("extensions.html", PotentialOS_Nav=highlight)
 
 @app.route('/thruster-ui')
 def thrusterUI():
-    return render_template("thruster-ui.html")
+    highlight = selector()
+    highlight["ThrusterData"] = "nav-link"
+    return render_template("thruster-ui.html", PotentialOS_Nav=highlight)
 
 
 @app.route('/sonarviewer')
 def sonarViewer():
-    return render_template("sonarviewer.html")
+    highlight = selector()
+    highlight["SonarViewer"] = "nav-link"
+    return render_template("sonarviewer.html", PotentialOS_Nav=highlight)
 
 
 @app.route('/terminal')
 def terminal():
-    return render_template("terminal.html")
+    highlight = selector()
+    highlight["Terminal"] = "nav-link"
+    return render_template("terminal.html", PotentialOS_Nav=highlight)
 
 
 @app.route('/robot_vitals')
 def robotVitals():
-    return render_template("robot_vitals.html")
+    highlight = selector()
+    highlight["RobotStats"] = "nav-link"
 
-# on the terminal type: curl http://127.0.0.1:5000/ 
+    return render_template("robot_vitals.html", PotentialOS_Nav=highlight)
+
+# on the terminal type: curl http://127.0.0.1:5000/api-curl
 @app.route('/api-call', methods = ['GET', 'POST']) 
 def home(): 
     if(request.method == 'GET'): 
           return system_stats()
   
+@app.route('/processes')
+def process():
+    return get_processes()
+
+@app.route('/process-ui')
+def sysprocess():
+    highlight = selector()
+    return render_template('processes.html')
 
 
 @app.route('/system-info')
 def systemInfo():
-    return render_template("system-info.html")
+    highlight = selector()
+    highlight["SystemInfo"] = "nav-link"
+    return render_template("system-info.html", PotentialOS_Nav=highlight)
 
 def signal_handler(signal, msg):
     rospy.signal_shutdown("end")

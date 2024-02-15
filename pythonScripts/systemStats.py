@@ -109,5 +109,5 @@ def system_stats():
     json_data = json.dumps(info_dict, indent=4)
 
     # Print the JSON string
-    print(json_data)
+    # print(json_data)
     return json_data

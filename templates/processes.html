@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Process Monitor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+
+        table th, table td {
+            padding: 10px 15px;
+        }
+
+        table th {
+            background-color: #333;
+        }
+
+        table td {
+            background-color: #444;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #555;
+        }
+
+        table tr:hover {
+            background-color: #666;
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>PID</th>
+            <th>User</th>
+            <th>CPU %</th>
+            <th>Memory %</th>
+            <th>Start Time</th>
+            <th>Command</th>
+        </tr>
+        <tbody id="processesTable"></tbody>
+    </table>
+    
+    <script>
+
+        function updateProcessesTable() {
+            fetch('/processes')
+                .then(response => response.json())
+                .then(processes => {
+                    // Sort processes by CPU percent in descending order
+                    processes.sort((a, b) => b.cpu_percent - a.cpu_percent);
+
+                    const tableBody = document.getElementById('processesTable');
+                    tableBody.innerHTML = '';
+                    // Display only the top 10 processes
+                    processes.slice(0, 10).forEach(process => {
+                        const row = document.createElement('tr');
+                        const command = process.command.length > 50 ? process.command.substring(0, 50) + '...' : process.command;
+                        row.innerHTML = `
+                            <td>${process.pid}</td>
+                            <td>${process.username}</td>
+                            <td>${process.cpu_percent.toFixed(2)}</td>
+                            <td>${process.memory_percent.toFixed(2)}</td>
+                            <td>${process.start_time}</td>
+                            <td title="${process.command}">${command}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                });
+        }
+
+        setInterval(updateProcessesTable, 2000);  // Update every 2 seconds
+        updateProcessesTable();  // Initial update
+
+    </script>
+</body>
+</html>

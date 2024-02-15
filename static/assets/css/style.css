@@ -226,7 +226,7 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #e6e6e6;
+  color: #4a53a5;
   font-family: "Poppins", sans-serif;
 }
 
@@ -327,7 +327,7 @@ h6 {
 .nav-tabs-bordered .nav-link {
   margin-bottom: -2px;
   border: none;
-  color: #ffffff;
+  color: #8d8b8b;
 }
 
 .nav-tabs-bordered .nav-link:hover,
