@@ -1,9 +1,11 @@
 // Make a GET request to the API URL
 fetchData();
+
 setInterval(fetchData, 2000);
+document.getElementById('runSpeedtestBtn').onclick = fetchSpeedtest()
 
 function fetchData() {
-  fetch("http://192.168.2.78:5000/api-call")
+  fetch("http://127.0.0.1:5000/api-call")
     .then((response) => {
       // Check if the response is successful (status code 200)
       if (response.ok) {
@@ -63,3 +65,30 @@ function fetchData() {
       console.error("Error fetching data:", error);
     });
 }
+
+
+
+function fetchSpeedtest() {
+
+
+  document.getElementById('speedtest-result').innerHTML = `
+
+`;
+  document.getElementById('loader').style.display = 'block';
+  console.log("button click recieved")
+  fetch('/speedtest')
+      .then(response => response.json())
+      .then(data => {
+
+        document.getElementById('loader').style.display = 'none';
+
+          document.getElementById('speedtest-result').innerHTML = `
+              <p>Download Speed: ${data.download_speed.toFixed(2)} Mbps</p>
+              <p>Upload Speed: ${data.upload_speed.toFixed(2)} Mbps</p>
+              <p>Ping Latency: ${data.ping_latency.toFixed(2)} ms</p>
+          `;
+      });
+}
+
+
+

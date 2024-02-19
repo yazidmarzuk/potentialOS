@@ -6,6 +6,7 @@ import signal, sys
 from pythonScripts.systemStats import system_stats
 from pythonScripts.processes import get_processes 
 from pythonScripts.layout_selector import selector 
+from pythonScripts.network_test import run_speedtest
 
 import psutil
 import json
@@ -38,11 +39,17 @@ def index():
     highlight["Index"] = "nav-link"
     return render_template("index.html", PotentialOS_Nav=highlight )
 
+@app.route('/potpit')
+def potpit():
+    highlight = selector()
+    highlight["PotPit"] = "nav-link"
+    # return render_template("potpit.html", PotentialOS_Nav=highlight)
+    return render_template("potpit.html", PotentialOS_Nav=highlight)
+
 @app.route('/extensions')
 def extensions():
     highlight = selector()
     highlight["Extensions"] = "nav-link"
-
     return render_template("extensions.html", PotentialOS_Nav=highlight)
 
 @app.route('/thruster-ui')
@@ -70,8 +77,9 @@ def terminal():
 def robotVitals():
     highlight = selector()
     highlight["RobotStats"] = "nav-link"
-
     return render_template("robot_vitals.html", PotentialOS_Nav=highlight)
+
+
 
 # on the terminal type: curl http://127.0.0.1:5000/api-curl
 @app.route('/api-call', methods = ['GET', 'POST']) 
@@ -101,13 +109,12 @@ def signal_handler(signal, msg):
 
 signal.signal(signal.SIGINT,signal_handler)
 
-
-
+@app.route('/speedtest',methods = ['GET', 'POST'])
+def speedtest():
+    if(request.method == 'GET'): 
+        print("request recieved")
+        return run_speedtest()
 
 if __name__=="__main__":
-    #liveServer Functionality
-    # rospy.init_node("web-ros-test")
-    # rospy.Subscriber("/chatter", Float32, updateValues) 
     app.run(host="0.0.0.0", debug=True) 
-    # app.run(host='0.0.0.0',port=4444,debug=True) 
 

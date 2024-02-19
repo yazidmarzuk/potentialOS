@@ -118,7 +118,7 @@
                     <div class="card-body" style="padding:1%; overflow: hidden; border-radius: 10px;">
                       <div style="border-radius: 20px; padding-top:57%; position:relative; display:flexbox;  overflow: hidden;">
                         <iframe width="100%" height="100%"
-                          src="http://192.168.2.78:5000/process-ui"
+                          src="http://127.0.0.1:5000/process-ui"
                           frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
                         </iframe>
                       </div>
@@ -139,14 +139,18 @@
 
               </ul>
             </div>
+
             <div class="card-body">
               <h5 class="card-title">Network Speed Test</h5>
-              <p class="card-text"></p>
-                  <button id="fetchDataBtn">Fetch Data</button>
 
-                  <!-- <button onclick="runPythonScript()" type="button" class="btn btn-primary">Run Test</button> -->
+              <div id="loader" class="loader"></div> <!-- Loader element -->
+              <p id="speedtest-result" class="card-text"></p>
+              
+                  <button type="button" class="btn btn-dark" onclick="fetchSpeedtest()">
+                    <i class="bi bi-globe"></i>
+                    Fetch Data
+                  </button>
 
-              </button>
             </div>
           </div><!-- End Special title treatmen -->
 
