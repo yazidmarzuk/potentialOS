@@ -2,16 +2,39 @@
 <!-- {% extends "layout.html" %}
 {% block mainbody %} -->
 
-
-  <main id="main" class="main">
+  <main id="main" class="main" style="overflow: hidden;">
 
     <style>
-      #wrap {  height: 390px; padding: 0; overflow: hidden; }
-      #frame { width: 800px; height: 520px; border: 1px solid black; }
-      #frame { zoom: 0.75; -moz-transform: scale(0.75); -moz-transform-origin: 0 0; }
-      </style>
       
 
+      #wrap {
+        width: 1920px;
+        height: 1080px;
+        padding: 0;
+        overflow: hidden;
+      }
+      #scaled-frame {
+        width: 2500px;
+        height: 2000px;
+        border: 0px;
+      }
+      #scaled-frame {
+        zoom: 0.8;
+        /* MOZILLA BROWSER */
+        -moz-transform: scale(0.8);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.8);
+        -o-transform-origin: 0 0;
+        /* BRAVE BROWSER */
+        -webkit-transform: scale(0.8);
+        -webkit-transform-origin: 0 0;
+      }
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        #scaled-frame {
+          zoom: 1;
+        }
+      }
+    </style>
 
 
     <section class="section">
@@ -19,9 +42,9 @@
 
           <div class="card" style="background-color: transparent;">
             <div class="card-body" style="padding:1%; overflow: hidden;">
-              <div style="padding-top:57%; position:relative; display:flexbox; height: 100%; width: 100%; overflow: hidden;">
-                <iframe id="frame" width="100%" height="100%" 
-                  src="http://127.0.0.1:7890"
+              <div id="wrap" style="padding-top:57%; position:relative; display:flexbox; height: 100%; width: 100%; overflow: hidden;">
+                <iframe id="scaled-frame"  
+                  src="http://127.0.0.1:7890/"
                   frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
                 </iframe>
               </div>
@@ -40,4 +63,4 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   
-  {% endblock mainbody %}
+  <!-- {% endblock mainbody %} -->
