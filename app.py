@@ -7,6 +7,10 @@ from pythonScripts.systemStats import system_stats
 from pythonScripts.processes import get_processes 
 from pythonScripts.layout_selector import selector 
 from pythonScripts.network_test import run_speedtest
+from pythonScripts.sensorData import SensorDataSend
+
+from sensor_msgs.msg import FluidPressure
+
 
 import psutil
 import json
@@ -15,15 +19,22 @@ from datetime import datetime
 import random
 
 msg = 0.0
+SensorData = SensorDataSend()
+
 event = Event()
 
-def callback(data):
-    global msg 
-    msg = data
+def pressure_callback(data):
+  global SensorData  
+  depth_val = round((data.fluid_pressure-101.5)*0.1023,2)
+  SensorData = SensorDataSend()
+  SensorData["DepthSensor"] = depth_val
+  SensorData["Pressure"] = data.fluid_pressure
+  print(SensorData["Pressure"])
+
 
 
 Thread(target=lambda: rospy.init_node('ros_web_tester', disable_signals=True, anonymous=True)).start()
-rospy.Subscriber("/chatter",Float32, callback)
+rospy.Subscriber("/potrov2/pressure",FluidPressure, pressure_callback)
 
 # Create WSGI App
 app=Flask(__name__)
@@ -35,9 +46,10 @@ def get_msg():
 
 @app.route('/')
 def index():
+    global SensorData
     highlight = selector()
     highlight["Index"] = "nav-link"
-    return render_template("index.html", PotentialOS_Nav=highlight )
+    return render_template("index.html", PotentialOS_Nav=highlight, SensorData=SensorData )
 
 @app.route('/potpit')
 def potpit():
@@ -114,6 +126,15 @@ def speedtest():
     if(request.method == 'GET'): 
         print("request recieved")
         return run_speedtest()
+
+@app.route('/sensor-data',methods = ['GET', 'POST'])
+def sensorData():
+    if(request.method == 'GET'): 
+        print("sensor data request recieved")
+        return SensorData
+
+
+
 
 if __name__=="__main__":
     app.run(host="0.0.0.0", debug=True) 

@@ -1,8 +1,9 @@
 // Make a GET request to the API URL
 fetchData();
+fetchSpeedtest()
 
 setInterval(fetchData, 2000);
-document.getElementById('runSpeedtestBtn').onclick = fetchSpeedtest()
+document.getElementById('runSpeedtestBtn').onclick = fetchSpeedtest
 
 function fetchData() {
   fetch("http://127.0.0.1:5000/api-call")
@@ -41,16 +42,11 @@ function fetchData() {
         }
       }
 
-      console.log(data);
-      document.getElementById("disk-main-data").innerHTML =
-        data["Disk Usage"]["Percentage"];
+      document.getElementById("disk-main-data").innerHTML = data["Disk Usage"]["Percentage"];
       document.getElementById("disk-partition-data").innerHTML = "nvme0n1p1";
-      document.getElementById("disk-used-data").innerHTML =
-        data["Disk Usage"]["Used"];
-      document.getElementById("disk-avail-data").innerHTML =
-        data["Disk Usage"]["Available"];
-      document.getElementById("disk-total-data").innerHTML =
-        data["Disk Usage"]["Total"];
+      document.getElementById("disk-used-data").innerHTML = data["Disk Usage"]["Used"];
+      document.getElementById("disk-avail-data").innerHTML = data["Disk Usage"]["Available"];
+      // document.getElementById("disk-total-data").innerHTML = data["Disk Usage"]["Total"];
 
       // // Process the JSON data
       // // data['System Information']);
@@ -60,10 +56,10 @@ function fetchData() {
       // // setInterval(fetchData, 2000);
       // // console.log(data['System Status']['Temperature'])
     })
-    .catch((error) => {
-      // Handle any errors that occurred during the fetch
-      console.error("Error fetching data:", error);
-    });
+    // .catch((error) => {
+    //   // Handle any errors that occurred during the fetch
+    //   console.error("Error fetching data:", error);
+    // });
 }
 
 
@@ -71,9 +67,7 @@ function fetchData() {
 function fetchSpeedtest() {
 
 
-  document.getElementById('speedtest-result').innerHTML = `
-
-`;
+  document.getElementById('speedtest-result').innerHTML = "";
   document.getElementById('loader').style.display = 'block';
   console.log("button click recieved")
   fetch('/speedtest')

@@ -6,7 +6,7 @@ import psutil
 def system_stats():
     # Getting system information
     Architecture = subprocess.check_output(["uname", "-m"]).decode().strip()
-    Machine = "Jetson Xavier"  # Assuming the script is running on a Jetson Xavier
+    Machine = "Machine"  # Assuming the script is running on a Jetson Xavier
     Node = subprocess.check_output(["uname", "-n"]).decode().strip()
     System = "Linux"  # Assuming it's a Linux system
 
