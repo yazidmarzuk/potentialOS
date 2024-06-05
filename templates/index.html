@@ -70,7 +70,7 @@
               </div>
             </div><!-- End Revenue Card -->
 
-            <!-- Customers Card -->
+            <!-- SPEED OF ROV Card -->
             <div class="col-xxl-4 col-xl-12">
 
               <div class="card info-card customers-card">
@@ -95,7 +95,7 @@
                 </div>
               </div>
 
-            </div><!-- End Customers Card -->
+            </div><!-- SPEED OF ROV -->
 
             <!-- Reports -->
             <div class="col-12">
@@ -103,11 +103,14 @@
 
                 <div class="card-body info-card">
                   <h5 class="card-title">Depth <span> | Graph</span></h5>
+                  <h3 style="color: white;" > <span id="DepthSensorData" > 0 </span> M</h3>
 
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
 
+                  <script>
 
+                  </script>
                   <!-- End Line Chart -->
 
                 </div>
@@ -261,7 +264,7 @@
                           <tr>
                             <td id="" style="background-color: #262C36; color: white;"><i class=" ri-arrow-down-line"></i>    Pressure</td>
                             <td id="" style="background-color: #262C36; color: white;"></td>
-                            <td id="DepthSensor" style="background-color: #262C36; color: white;">{{SensorData["Pressure"]}}</td>
+                            <td style="background-color: #262C36; color: white;"> <span  id="PressureSensorData"></span>  BAR</td>
                           </tr>
                         </tbody>
                       </table>
