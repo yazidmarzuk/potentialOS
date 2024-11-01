@@ -1,91 +1,14 @@
-# 🚀 Potential OS Flask Dashboard
+# PotOS - Digital Twin and Control Web Interface for ROV
 
-Welcome to the Potential OS Flask Dashboard project! This project provides a dynamic dashboard for displaying ROV (Remotely Operated Vehicle) data and controlling the ROV remotely. The dashboard subscribes to a ROS topic (`/potential_os_data`) using rospy, a Python library for ROS, and updates the webpage in real-time with the received data. Additionally, it allows users to control the ROV through interactive elements on the dashboard.
+**PotOS** is a web-based interface developed by Yazid Marzuk to visualize and control the digital twin of the Remotely Operated Underwater Vehicle (ROV). The platform integrates real-time sensor data, live video feeds, and control capabilities, providing comprehensive monitoring and command over the ROV’s operations.
 
-## 🌟 Features
+## Features
 
-- Real-time display of ROV data on a dynamic dashboard.
-- Control functionalities to remotely operate the ROV.
-- Minimal delay between ROS message publication and display update.
-- Easy setup and integration with existing ROS systems.
-- Lightweight and simple Flask web server.
+- **Digital Twin Visualization**: View a 3D representation of the ROV and its underwater environment in real time.
+- **Real-Time Sensor Data**: Access live sensor data, including depth, orientation, temperature, and environmental variables, directly within the web interface.
+- **Video and Sonar Feeds**: Display real-time video from the ROV’s camera, as well as data from Side Scan Sonar and Navigational Sonar, for an immersive view of the underwater environment.
+- **Obstacle Detection**: Visualize obstacles detected by the ROV’s sensors to assist in navigation and maneuvering.
+- **NMEA Command Interface**: Send NMEA commands to control various ROV functions and adjust settings as needed.
+- **ROS Integration**: Backend built on ROS, providing a reliable and extensible framework for data streaming and command handling.
+- **Flask Web Interface**: Intuitive and user-friendly Flask-based frontend for accessible ROV operation and monitoring.
 
-## 📋 Requirements
-
-- ROS: Make sure you have ROS installed on your system.
-- Python: This project requires Python 2.7+ or Python 3.x.
-- Flask: Install Flask using `pip install flask`.
-- rospy: Install rospy using `pip install rospy`.
-- Python Virtual Environment (optional but recommended)
-
-## 🛠️ Installation
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/yazidmarzuk/potentialOS.git
-    cd potentialOS
-    ```
-
-2. Create and activate a Python virtual environment (optional but recommended):
-
-    ```bash
-    python -m venv venv
-    source venv/bin/activate   # On Linux/Mac
-    .\venv\Scripts\activate    # On Windows
-    ```
-
-3. Install Flask and rospy dependencies:
-
-    ```bash
-    pip install flask rospy
-    ```
-
-4. Install ROSlib.js:
-
-    ```bash
-    npm install roslib
-    ```
-
-    Note: Make sure you have Node.js and npm installed on your system. You can download them from [here](https://nodejs.org/).
-
-## 🚀 Usage
-
-1. Start your ROS master node:
-
-    ```bash
-    roscore
-    ```
-
-2. Launch the ROS web server (rosbridge):
-
-    ```bash
-    roslaunch rosbridge_server rosbridge_websocket.launch
-    ```
-
-3. Start your ROS node publishing data to the `/potential_os_data` topic (replace `/potential_os_data` with your actual topic):
-
-    ```bash
-    rosrun your_package_name your_node_name.py
-    ```
-
-4. Start the Flask application:
-
-    ```bash
-    python app.py
-    ```
-
-5. Open your web browser and navigate to `http://localhost:5000` to access the dynamic dashboard for Potential OS data display and control.
-
-## 📁 File Structure
-
-- `app.py`: Python Flask application that subscribes to the ROS topic and serves the dynamic dashboard.
-- `templates/index.html`: HTML template for the dynamic dashboard displaying ROV data and control functionalities.
-
-## 🤝 Contributing
-
-Contributions are welcome! If you find any bugs or want to suggest improvements, please open an issue or submit a pull request.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
