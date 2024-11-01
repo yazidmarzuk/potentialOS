@@ -1,6 +1,6 @@
 # PotOS - Digital Twin and Control Web Interface for ROV
 
-**PotOS** is a web-based interface developed by Yazid Marzuk to visualize and control the digital twin of the Remotely Operated Underwater Vehicle (ROV). The platform integrates real-time sensor data, live video feeds, and control capabilities, providing comprehensive monitoring and command over the ROV’s operations.
+**PotOS** is a web-based interface developed to visualize and control the digital twin of the Remotely Operated Underwater Vehicle (ROV). The platform integrates real-time sensor data, live video feeds, and control capabilities, providing comprehensive monitoring and command over the ROV’s operations.
 
 ## Features
 
