@@ -23,8 +23,8 @@ Welcome to the Potential OS Flask Dashboard project! This project provides a dyn
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your_username/potential-os-flask-dashboard.git
-    cd potential-os-flask-dashboard
+    git clone https://github.com/yazidmarzuk/potentialOS.git
+    cd potentialOS
     ```
 
 2. Create and activate a Python virtual environment (optional but recommended):
